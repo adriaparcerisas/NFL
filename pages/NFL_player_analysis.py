@@ -74,7 +74,7 @@ st.altair_chart(alt.Chart(df, width=600)
     .encode(x='sum(completions)', y=alt.Y('player_name',sort='-x'),color=alt.Color('player_name', scale=alt.Scale(scheme='dark2')))
     .transform_window(
     rank='rank(player_name)',
-    sort=[alt.SortField(x, order='descending')]
+    sort=[alt.SortField('completions', order='descending')]
     ).transform_filter(
     (alt.datum.rank < 10)
     .properties(title='Number of completions by player'))
