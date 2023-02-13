@@ -30,34 +30,14 @@ st.markdown('The regular season consists of an 18-week schedule during which eac
 
 
 st.markdown('The intention of this analysis is to provide information about how the NFL considering metrics such as:') 
-st.write('- ')
-st.write('- Teams')
-st.write('- Points')
+st.write('- Completions')
+st.write('- Attempts')
 st.write('- Interceptions')
 st.write('- Touchdowns')
 st.write('- Turnovers')
 st.write('- Passes and rushes')
 st.write('- Rushing and passing yards')
 st.write('')
-
-
-# In[10]:
-
-#df = nfl.import_pbp_data([2018,2019,2020,2021,2022], downcast=True, cache=False, alt_path=None)
-
-
-
-# In[6]:
-
-
-#df2 = nfl.import_pbp_data([2022], downcast=True, cache=False, alt_path=None)
-#df2
-
-
-# In[7]:
-
-
-#df2.to_csv('nfl_data_2.csv')
 
 
 # In[16]:
@@ -88,7 +68,7 @@ from plotly.subplots import make_subplots
 # Create figure with secondary y-axis
 fig1 = make_subplots(specs=[[{"secondary_y": True}]])
 
-fig1.add_trace(go.Bar(x=df['season_type'],
+fig1.add_trace(go.Bar(x=df['season'],
                 y=df['completions'],
                 name='# completions',
                 marker_color='rgb(163, 203, 249)'
@@ -110,7 +90,7 @@ fig1.update_layout(
 
 fig11 = make_subplots(specs=[[{"secondary_y": True}]])
 
-fig11.add_trace(go.Bar(x=df['season_type'],
+fig11.add_trace(go.Bar(x=df['season'],
                 y=df['attempts'],
                 name='# attempts',
                 marker_color='rgb(163, 203, 249)'
@@ -134,12 +114,12 @@ fig11.update_layout(
 # Create figure with secondary y-axis
 fig2 = make_subplots(specs=[[{"secondary_y": True}]])
 
-fig2.add_trace(go.Line(x=df['season_type'],
+fig2.add_trace(go.Line(x=df['season'],
                 y=df['interceptions'],
                 name='# interceptions',
                 marker_color='rgb(163, 203, 249)'
                 , yaxis='y'))
-fig2.add_trace(go.Line(x=df['season_type'],
+fig2.add_trace(go.Line(x=df['season'],
                 y=df['sacks'],
                 name='# sacks',
                 marker_color='rgb(11, 78, 154)'
@@ -169,34 +149,34 @@ col1,col2=st.columns(2)
 with col1:
     st.altair_chart(alt.Chart(df)
     .mark_line()
-    .encode(x='season_type:N', y='interceptions:Q',color='season_type')
+    .encode(x='season:N', y='interceptions:Q',color='season')
     .properties(title='Completed interceptions by season'))
 
 col2.altair_chart(alt.Chart(df)
     .mark_line()
-    .encode(x='season_type:N', y='receptions:Q',color='season_type')
+    .encode(x='season:N', y='receptions:Q',color='season')
     .properties(title='Completed receptions by season'))
 
 
 # Create figure with secondary y-axis
 fig2 = make_subplots(specs=[[{"secondary_y": True}]])
 
-fig2.add_trace(go.Line(x=df['season_type'],
+fig2.add_trace(go.Line(x=df['season'],
                 y=df['rushing_yards'],
                 name='# yards',
                 marker_color='rgb(163, 203, 249)'
                 , yaxis='y'))
-fig2.add_trace(go.Line(x=df['season_type'],
+fig2.add_trace(go.Line(x=df['season'],
                 y=df['passing_yards'],
                 name='# yards',
                 marker_color='rgb(11, 78, 154)'
                 , yaxis='y'))
-fig2.add_trace(go.Line(x=df['season_type'],
+fig2.add_trace(go.Line(x=df['season'],
                 y=df['receiving_yards'],
                 name='# yards',
                 marker_color='rgb(203, 249, 163)'
                 , yaxis='y2'))
-fig2.add_trace(go.Line(x=df['season_type'],
+fig2.add_trace(go.Line(x=df['season'],
                 y=df['sack_yards'],
                 name='# yards',
                 marker_color='rgb(154, 11, 78)'
