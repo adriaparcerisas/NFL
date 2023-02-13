@@ -72,12 +72,15 @@ from plotly.subplots import make_subplots
 st.altair_chart(alt.Chart(df, width=600)
     .mark_bar()
     .encode(x='sum(completions)', y=alt.Y('player_name',sort='-x'),color=alt.Color('player_name', scale=alt.Scale(scheme='dark2')))
-    .properties(title='Number of completions by player'))
+    .properties(title='Number of completions by player')
+    .transform_filter((alt.datum.rank < 20))
+
 
 st.altair_chart(alt.Chart(df, width=600)
     .mark_bar()
     .encode(x='sum(attempts)', y=alt.Y('player_name',sort='-x'),color=alt.Color('player_name', scale=alt.Scale(scheme='dark2')))
-    .properties(title='Number of attempts by player'))
+    .properties(title='Number of attempts by player')
+    .transform_filter((alt.datum.rank < 20))
 
 
 # Create figure with secondary y-axis
@@ -108,10 +111,6 @@ fig2.update_layout(
     bargroupgap=0.1 # gap between bars of the same location coordinate.
 )
 
-
-
-st.plotly_chart(fig1, theme="streamlit", use_container_width=True)
-st.plotly_chart(fig11, theme="streamlit", use_container_width=True)
 st.plotly_chart(fig2, theme="streamlit", use_container_width=True)
 
 fig1 = px.line(df, x="player_name", y="interceptions", color="player_name", color_discrete_sequence=px.colors.qualitative.Vivid)
