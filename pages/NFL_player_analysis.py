@@ -149,16 +149,37 @@ st.plotly_chart(fig1, theme="streamlit", use_container_width=True)
 st.plotly_chart(fig11, theme="streamlit", use_container_width=True)
 st.plotly_chart(fig2, theme="streamlit", use_container_width=True)
 
+fig1 = px.line(df, x="player_name", y="interceptions", color="player_name", color_discrete_sequence=px.colors.qualitative.Vivid)
+fig1.update_layout(
+    title='Completed incerceptions by player',
+    xaxis_tickfont_size=14,
+    yaxis_tickfont_size=14,
+    legend=dict(
+        x=0,
+        y=1.0,
+        bgcolor='rgba(255, 255, 255, 0)',
+        bordercolor='rgba(255, 255, 255, 0)'
+    ),
+    bargap=0.15, # gap between bars of adjacent location coordinates.
+    bargroupgap=0.1 # gap between bars of the same location coordinate.
+)
+st.plotly_chart(fig1, theme="streamlit", use_container_width=True)
 
-st.altair_chart(alt.Chart(df)
-.mark_bar()
-.encode(x='player_name:N', y='interceptions:Q',color='player_name')
-.properties(title='Completed interceptions by player'))
-
-st.altair_chart(alt.Chart(df)
-.mark_bar()
-.encode(x='player_name:N', y='receptions:Q',color='player_name')
-.properties(title='Completed receptions by player'))
+fig2 = px.line(df, x="player_name", y="receptions", color="player_name", color_discrete_sequence=px.colors.qualitative.Vivid)
+fig2.update_layout(
+    title='Completed receptions by player',
+    xaxis_tickfont_size=14,
+    yaxis_tickfont_size=14,
+    legend=dict(
+        x=0,
+        y=1.0,
+        bgcolor='rgba(255, 255, 255, 0)',
+        bordercolor='rgba(255, 255, 255, 0)'
+    ),
+    bargap=0.15, # gap between bars of adjacent location coordinates.
+    bargroupgap=0.1 # gap between bars of the same location coordinate.
+)
+st.plotly_chart(fig2, theme="streamlit", use_container_width=True)
 
 
 # Create figure with secondary y-axis
