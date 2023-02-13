@@ -71,25 +71,25 @@ from plotly.subplots import make_subplots
 
 st.altair_chart(alt.Chart(df, width=600)
     .mark_bar()
-    .encode(x='sum(completions)', y=alt.Y(recent_team,sort='-x'),color=alt.Color(recent_team, scale=alt.Scale(scheme='dark2')))
+    .encode(x='sum(completions)', y=alt.Y('recent_team',sort='-x'),color=alt.Color('recent_team', scale=alt.Scale(scheme='dark2')))
     .properties(title='Number of completions by team'))
 
 
 st.altair_chart(alt.Chart(df, width=600)
     .mark_bar()
-    .encode(x='sum(attempts)', y=alt.Y(recent_team,sort='-x'),color=alt.Color(recent_team, scale=alt.Scale(scheme='dark2')))
+    .encode(x='sum(attempts)', y=alt.Y('recent_team',sort='-x'),color=alt.Color('recent_team', scale=alt.Scale(scheme='dark2')))
     .properties(title='Number of attempts by team'))
 
 
 # Create figure with secondary y-axis
 fig2 = make_subplots(specs=[[{"secondary_y": True}]])
 
-fig2.add_trace(go.Bar(x=df[recent_team],
+fig2.add_trace(go.Bar(x=df['recent_team'],
                 y=df['interceptions'],
                 name='# interceptions',
                 marker_color='rgb(163, 203, 249)'
                 , yaxis='y'))
-fig2.add_trace(go.Bar(x=df[recent_team],
+fig2.add_trace(go.Bar(x=df['recent_team'],
                 y=df['sacks'],
                 name='# sacks',
                 marker_color='rgb(11, 78, 154)'
@@ -111,7 +111,7 @@ fig2.update_layout(
 
 st.plotly_chart(fig2, theme="streamlit", use_container_width=True)
 
-fig1 = px.line(df, x=recent_team, y="interceptions", color=recent_team, color_discrete_sequence=px.colors.qualitative.Vivid)
+fig1 = px.line(df, x='recent_team', y="interceptions", color='recent_team', color_discrete_sequence=px.colors.qualitative.Vivid)
 fig1.update_layout(
     title='Completed incerceptions by team',
     xaxis_tickfont_size=14,
@@ -127,7 +127,7 @@ fig1.update_layout(
 )
 st.plotly_chart(fig1, theme="streamlit", use_container_width=True)
 
-fig2 = px.line(df, x=recent_team, y="receptions", color=recent_team, color_discrete_sequence=px.colors.qualitative.Vivid)
+fig2 = px.line(df, x='recent_team', y="receptions", color='recent_team', color_discrete_sequence=px.colors.qualitative.Vivid)
 fig2.update_layout(
     title='Completed receptions by team',
     xaxis_tickfont_size=14,
@@ -147,22 +147,22 @@ st.plotly_chart(fig2, theme="streamlit", use_container_width=True)
 # Create figure with secondary y-axis
 fig2 = make_subplots(specs=[[{"secondary_y": True}]])
 
-fig2.add_trace(go.Bar(x=df[recent_team],
+fig2.add_trace(go.Bar(x=df['recent_team'],
                 y=df['rushing_yards'],
                 name='Rushing yards',
                 marker_color='rgb(163, 203, 249)'
                 , yaxis='y'))
-fig2.add_trace(go.Bar(x=df[recent_team],
+fig2.add_trace(go.Bar(x=df['recent_team'],
                 y=df['passing_yards'],
                 name='Passing yards',
                 marker_color='rgb(11, 78, 154)'
                 , yaxis='y'))
-fig2.add_trace(go.Bar(x=df[recent_team],
+fig2.add_trace(go.Bar(x=df['recent_team'],
                 y=df['receiving_yards'],
                 name='Receiving yards',
                 marker_color='rgb(203, 249, 163)'
                 , yaxis='y2'))
-fig2.add_trace(go.Bar(x=df[recent_team],
+fig2.add_trace(go.Bar(x=df['recent_team'],
                 y=df['sack_yards'],
                 name='Sack yards',
                 marker_color='rgb(154, 11, 78)'
@@ -187,7 +187,7 @@ fig2.update_yaxes(title_text="Receiving and Sack yards", secondary_y=True)
 
 st.plotly_chart(fig2, theme="streamlit", use_container_width=True)
 
-fig1 = px.line(df, x=recent_team, y="fantasy_points", color=recent_team, color_discrete_sequence=px.colors.qualitative.Vivid)
+fig1 = px.line(df, x='recent_team', y="fantasy_points", color='recent_team', color_discrete_sequence=px.colors.qualitative.Vivid)
 fig1.update_layout(
     title='Fantasy points scored by team',
     xaxis_tickfont_size=14,
