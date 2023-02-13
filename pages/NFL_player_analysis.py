@@ -77,8 +77,8 @@ chart=alt.Chart(
     color=alt.Color('player_name:Q')
 
 ).transform_window(
-    rank='rank(sum(completions))',
-    sort=[alt.SortField('sum(completions)', order='descending')]
+    rank='rank(completions)',
+    sort=[alt.SortField('completions', order='descending')]
 ).transform_filter(
     (alt.datum.rank < 10)
 )
