@@ -70,7 +70,7 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
 chart=alt.Chart(
-    source,
+    df,
 ).mark_bar().encode(
     x=alt.X('player_name:N', sort='-y'),
     y='sum(completions)',
