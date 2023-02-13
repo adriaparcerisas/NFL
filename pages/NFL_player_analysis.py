@@ -69,17 +69,6 @@ st.write('')
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
-st.altair_chart(alt.Chart(df, width=600)
-    .mark_bar()
-    .encode(x='sum(completions)', y=alt.Y('player_name',sort='-x'),color=alt.Color('player_name', scale=alt.Scale(scheme='dark2')))
-    .properties(title='Number of completions by player'))
-
-
-st.altair_chart(alt.Chart(df, width=600)
-    .mark_bar()
-    .encode(x='sum(attempts)', y=alt.Y('player_name',sort='-x'),color=alt.Color('player_name', scale=alt.Scale(scheme='dark2')))
-    .properties(title='Number of attempts by player'))
-
 
 # Create figure with secondary y-axis
 fig2 = make_subplots(specs=[[{"secondary_y": True}]])
