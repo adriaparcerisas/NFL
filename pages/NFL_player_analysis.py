@@ -69,50 +69,15 @@ st.write('')
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
-# Create figure with secondary y-axis
-fig1 = make_subplots(specs=[[{"secondary_y": True}]])
+st.altair_chart(alt.Chart(df, width=600)
+    .mark_bar()
+    .encode(x='sum(completions)', y=alt.Y('player_name',sort='-x'),color=alt.Color('player_name', scale=alt.Scale(scheme='dark2')))
+    .properties(title='Number of completions by player'))
 
-fig1.add_trace(go.Bar(x=df['player_name'],
-                y=df['completions'],
-                name='# completions',
-                marker_color='rgb(163, 203, 249)'
-                , yaxis='y'))
-
-fig1.update_layout(
-    title='Completions done',
-    xaxis_tickfont_size=14,
-    legend=dict(
-        x=0,
-        y=1.0,
-        bgcolor='rgba(255, 255, 255, 0)',
-        bordercolor='rgba(255, 255, 255, 0)'
-    ),
-    barmode='group',
-    bargap=0.15, # gap between bars of adjacent location coordinates.
-    bargroupgap=0.1 # gap between bars of the same location coordinate.
-)
-
-fig11 = make_subplots(specs=[[{"secondary_y": True}]])
-
-fig11.add_trace(go.Bar(x=df['player_name'],
-                y=df['attempts'],
-                name='# attempts',
-                marker_color='rgb(163, 203, 249)'
-                , yaxis='y'))
-
-fig11.update_layout(
-    title='Attempts done',
-    xaxis_tickfont_size=14,
-    legend=dict(
-        x=0,
-        y=1.0,
-        bgcolor='rgba(255, 255, 255, 0)',
-        bordercolor='rgba(255, 255, 255, 0)'
-    ),
-    barmode='group',
-    bargap=0.15, # gap between bars of adjacent location coordinates.
-    bargroupgap=0.1 # gap between bars of the same location coordinate.
-)
+st.altair_chart(alt.Chart(df, width=600)
+    .mark_bar()
+    .encode(x='sum(attempts)', y=alt.Y('player_name',sort='-x'),color=alt.Color('player_name', scale=alt.Scale(scheme='dark2')))
+    .properties(title='Number of attempts by player'))
 
 
 # Create figure with secondary y-axis
