@@ -225,32 +225,21 @@ fig2.update_yaxes(title_text="Receiving and Sack yards", secondary_y=True)
 
 st.plotly_chart(fig2, theme="streamlit", use_container_width=True)
 
-fig2 = make_subplots(specs=[[{"secondary_y": True}]])
-
-fig2.add_trace(go.Line(x=df['player_name'],
-                y=df['fantasy_points'],
-                name='Points',
-                marker_color='rgb(163, 203, 249)'
-                , yaxis='y'))
-
-fig2.update_layout(
-    title='Fantasy points by player',
+fig1 = px.line(df, x="player_name", y="fantasy_points", color="player_name", color_discrete_sequence=px.colors.qualitative.Vivid)
+fig1.update_layout(
+    title='Fantasy points scored by player',
     xaxis_tickfont_size=14,
+    yaxis_tickfont_size=14,
     legend=dict(
         x=0,
         y=1.0,
         bgcolor='rgba(255, 255, 255, 0)',
         bordercolor='rgba(255, 255, 255, 0)'
     ),
-    barmode='group',
     bargap=0.15, # gap between bars of adjacent location coordinates.
     bargroupgap=0.1 # gap between bars of the same location coordinate.
 )
-
-
-
-st.plotly_chart(fig2, theme="streamlit", use_container_width=True)
-
+st.plotly_chart(fig1, theme="streamlit", use_container_width=True)
 
 
 st.write('')
