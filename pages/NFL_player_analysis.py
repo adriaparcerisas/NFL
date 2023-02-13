@@ -161,12 +161,12 @@ col1,col2=st.columns(2)
 with col1:
     st.altair_chart(alt.Chart(df)
     .mark_line()
-    .encode(x='player:N', y='interceptions:Q',color='player_name')
+    .encode(x='player_name:N', y='interceptions:Q',color='player_name')
     .properties(title='Completed interceptions by player'))
 
 col2.altair_chart(alt.Chart(df)
     .mark_line()
-    .encode(x='player:N', y='receptions:Q',color='player_name')
+    .encode(x='player_name:N', y='receptions:Q',color='player_name')
     .properties(title='Completed receptions by player'))
 
 
