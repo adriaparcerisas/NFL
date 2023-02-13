@@ -69,20 +69,10 @@ st.write('')
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
-chart=alt.Chart(
-    df,
-).mark_bar().encode(
-    x=alt.X('player_name:N', sort='-y'),
-    y='sum(completions)',
-    color=alt.Color('player_name:Q')
-
-).transform_window(
-    rank='rank(completions)',
-    sort=[alt.SortField('completions', order='descending')]
-).transform_filter(
-    (alt.datum.rank < 10)
-)
-st.altair_chart(chart, theme="streamlit", use_container_width=True)
+st.altair_chart(alt.Chart(df, width=600)
+    .mark_bar()
+    .encode(x='sum(completions)', y=alt.Y('player_name',sort='-x'),color=alt.Color('player_name', scale=alt.Scale(scheme='dark2')))
+    .properties(title='Number of completions by player'))
 
 
 st.altair_chart(alt.Chart(df, width=600)
